@@ -10,15 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.DrawableObjectsList;
 import model.MouseCircle;
+import model.MousePositionObserver;
 
 import static utils.GlobalConstants.HEIGHT;
 import static utils.GlobalConstants.WIDTH;
 
 public class Main extends Application {
 
+    private Presenter presenter;
     private static Pane root;
     private static DrawableObjectsList<Node> drawableObjects;
-    private static Presenter presenter;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -37,6 +38,7 @@ public class Main extends Application {
         MouseEventController.getInstance(root);
 
         MouseCircle mouseCircle = MouseCircle.getInstance();
+        mouseCircle.setObserver((x, y) -> presenter.draw(drawableObjects));
         add(mouseCircle);
     }
 
@@ -46,7 +48,6 @@ public class Main extends Application {
 
     public static void add(Node e) {
         drawableObjects.add(e);
-        presenter.draw(drawableObjects);
     }
 
     public static void main(String[] args) {
