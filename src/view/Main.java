@@ -8,18 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.DrawableObjectsList;
 import model.MouseCircle;
 
-import java.util.ArrayList;
-import java.util.List;
+import static utils.GlobalConstants.HEIGHT;
+import static utils.GlobalConstants.WIDTH;
 
 public class Main extends Application {
 
-    public static final int WIDTH = 1500;
-    public static final int HEIGHT = 800;
-
     private static Pane root;
-    private static List<Node> drawableObjects;
+    private static DrawableObjectsList<Node> drawableObjects;
     private static Presenter presenter;
 
     @Override
@@ -30,8 +28,9 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        drawableObjects = new ArrayList<>();
         presenter = new PresenterImpl();
+        drawableObjects = new DrawableObjectsList<>();
+        drawableObjects.registerObserver(() -> presenter.draw(drawableObjects));
 
         ObstacleGenerator generator = new ObstacleGenerator();
         generator.generate();

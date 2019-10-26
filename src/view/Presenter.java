@@ -1,9 +1,8 @@
 package view;
 
 import javafx.scene.Node;
-
-import java.util.List;
+import model.DrawableObjectsList;
 
 public interface Presenter {
-    void draw(List<Node> drawableObjects);
+    void draw(DrawableObjectsList<Node> drawableObjects);
 }

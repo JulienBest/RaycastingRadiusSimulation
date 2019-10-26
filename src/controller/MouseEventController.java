@@ -1,14 +1,14 @@
 package controller;
 
 import javafx.scene.layout.Pane;
-import model.IMousePositionObserver;
+import model.MousePositionObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MouseEventController {
 
-    private List<IMousePositionObserver> observers;
+    private List<MousePositionObserver> mousePositionObservers;
     private static MouseEventController instance;
 
 
@@ -20,15 +20,15 @@ public class MouseEventController {
     }
 
     private MouseEventController(Pane root) {
-        observers = new ArrayList<>();
+        mousePositionObservers = new ArrayList<>();
         root.setOnMouseMoved(mouseEvent -> {
-            for (IMousePositionObserver o : observers) {
-                o.notify(mouseEvent.getX(), mouseEvent.getY());
+            for (MousePositionObserver o : mousePositionObservers) {
+                o.notifyMousePositionChanged(mouseEvent.getX(), mouseEvent.getY());
             }
         });
     }
 
-    public void registerObserver(IMousePositionObserver newObserver) {
-        this.observers.add(newObserver);
+    public void registerObserver(MousePositionObserver newMousePositionObserver) {
+        this.mousePositionObservers.add(newMousePositionObserver);
     }
 }

@@ -12,6 +12,8 @@ public class MouseCircle extends Circle {
     private MouseCircle() {
         this.setRadius(10);
         this.setFill(Color.WHITE);
+        this.setCenterX(50);
+        this.setCenterY(50);
         MouseEventController mouseEventController = MouseEventController.getInstance(Main.getRoot());
         mouseEventController.registerObserver((x, y) -> {
             setCenterX(x);
