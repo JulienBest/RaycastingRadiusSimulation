@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.DrawableObjectsList;
 import model.MouseCircle;
-import model.MousePositionObserver;
+import model.RayRadius;
 
 import static utils.GlobalConstants.HEIGHT;
 import static utils.GlobalConstants.WIDTH;
@@ -35,7 +35,9 @@ public class Main extends Application {
 
         ObstacleGenerator generator = new ObstacleGenerator();
         generator.generate();
-        MouseEventController.getInstance(root);
+        MouseEventController.setRoot(root);
+        MouseEventController.getInstance();
+        new RayRadius();
 
         MouseCircle mouseCircle = MouseCircle.getInstance();
         mouseCircle.setObserver((x, y) -> presenter.draw(drawableObjects));

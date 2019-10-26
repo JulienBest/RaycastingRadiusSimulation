@@ -3,7 +3,6 @@ package model;
 import controller.MouseEventController;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import view.Main;
 
 public class MouseCircle extends Circle {
 
@@ -13,11 +12,11 @@ public class MouseCircle extends Circle {
     private MouseCircle() {
         this.setRadius(10);
         this.setFill(Color.WHITE);
-        MouseEventController mouseEventController = MouseEventController.getInstance(Main.getRoot());
+        MouseEventController mouseEventController = MouseEventController.getInstance();
         mouseEventController.registerObserver((x, y) -> {
             setCenterX(x);
             setCenterY(y);
-            if (observer != null) observer.notifyMousePositionChanged(x,y);
+            if (observer != null) observer.notifyMousePositionChanged(x, y);
         });
     }
 

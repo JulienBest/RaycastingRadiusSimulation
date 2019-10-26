@@ -10,9 +10,10 @@ public class MouseEventController {
 
     private List<MousePositionObserver> mousePositionObservers;
     private static MouseEventController instance;
+    private static Pane root;
 
 
-    public static MouseEventController getInstance(Pane root) {
+    public static MouseEventController getInstance() {
         if (instance == null) {
             instance = new MouseEventController(root);
         }
@@ -30,5 +31,9 @@ public class MouseEventController {
 
     public void registerObserver(MousePositionObserver newMousePositionObserver) {
         this.mousePositionObservers.add(newMousePositionObserver);
+    }
+
+    public static void setRoot(Pane root) {
+        MouseEventController.root = root;
     }
 }
